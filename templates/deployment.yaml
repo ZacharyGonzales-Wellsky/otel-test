@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-test
+  labels:
+    app: otel-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otel-test
+  template:
+    metadata:
+      labels:
+        app: otel-test
+    spec:
+      containers:
+        - name: otel-test
+          image: puckpuck/otel-test
+          env:
+            - name: OTLP_ENDPOINT
+              value: otel-collector.opentelemetry-collector:55680
